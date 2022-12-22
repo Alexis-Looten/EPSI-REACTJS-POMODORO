@@ -29,14 +29,25 @@ function Effect(){
 
     }
 
-    const SortByDate = () => {
+    const SortByDateUp = () => {
         console.log(dateList[0].date)
         setdateList(dateList => dateList.sort((a, b) =>  Date.parse(a.date) - Date.parse(b.date)))
         setDateSort(!dateSort);
     }
 
-    const SortByTimer = () => {
+    const SortByDateDown = () => {
+        console.log(dateList[0].date)
+        setdateList(dateList => dateList.sort((a, b) =>  Date.parse(b.date) - Date.parse(a.date)))
+        setDateSort(!dateSort);
+    }
+
+    const SortByTimerUp = () => {
         setdateList(dateList => dateList.sort((a, b) => a.timer - b.timer))
+        setTimerSort(!timerSort);
+    }
+
+    const SortByTimerDown = () => {
+        setdateList(dateList => dateList.sort((a, b) => b.timer - a.timer))
         setTimerSort(!timerSort);
     }
 
@@ -50,15 +61,20 @@ function Effect(){
                 {toggle? parseSecondtoHMS(clock): parseSecondtoHMS(0)}
             </div>
             <div class="center_btn">
-                <button class="btn_start" onClick={toggler}>Start</button> 
+                <button class="btn_start" onClick={toggler}>Start</button>
+                
             </div>
 
             <div class= "center_table">
             <table class="minimalistBlack">
                 <thead>
                 <tr>
-                <th onClick={SortByDate}>Date</th>
-                <th onClick={SortByTimer}>Time</th>
+                    <th>
+                        Date <button class="btn_sort" onClick={SortByDateUp}>△</button><button class="btn_sort" onClick={SortByDateDown}>▽</button>
+                    </th>
+                    <th>
+                        Time <button class="btn_sort" onClick={SortByTimerUp}>△</button><button class="btn_sort" onClick={SortByTimerDown}>▽</button>
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
